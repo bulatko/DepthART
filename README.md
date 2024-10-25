@@ -1,6 +1,6 @@
 # DepthART: Monocular Depth Estimation as Autoregressive Refinement Task
 Bulat Gabdullin, Nina Konovalova, Nikolay Patakin, Dmitry Senushkin, Anton Konushin
-## [Arxiv](https://arxiv.org/abs/2409.15010) | [Project Page](https://depthart.github.io/)
+## [Arxiv](https://arxiv.org/abs/2409.15010) | [Project Page](https://bulatko.github.io/DepthART.github.io/)
 
 ![depthart](assets/DepthART.png)
 
