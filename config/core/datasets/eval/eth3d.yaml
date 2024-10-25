@@ -1,0 +1,6 @@
+ETH3D:
+  _target_: mde.datasets.ETH3DDataset
+
+  root: ${ETH3D_PATH}
+  size: [256, 256] #[1034, 1551] # default image size in dataset
+  partition: test

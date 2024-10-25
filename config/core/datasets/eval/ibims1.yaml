@@ -1,0 +1,7 @@
+IBIMS1:
+  _target_: mde.datasets.IBIMS1Dataset
+
+  root: ${IBIMS1_PATH}
+  size: [256, 256]
+  partition: test
+  eval_fullres: true

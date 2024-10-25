@@ -1,0 +1,13 @@
+exp_name: train_var
+
+defaults:
+  - accelerator
+  - launch: train/models/var_train.yaml
+  - training_configs: train_depth_var.yaml
+  - _self_
+
+accelerator:
+  project_config: 
+    _target_: accelerate.utils.ProjectConfiguration
+    project_dir: "./output/train/var"
+    logging_dir: "./logs/depth_var"

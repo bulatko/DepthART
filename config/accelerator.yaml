@@ -1,0 +1,10 @@
+accelerator:
+  _target_: accelerate.Accelerator
+  _recursive_: True
+  device_placement: True
+  gradient_accumulation_steps: 1
+  log_with: tensorboard
+  project_config: 
+    _target_: accelerate.utils.ProjectConfiguration
+    project_dir: "./output_dpt/train/dpt"
+    logging_dir: "./logs_new/dpt_small_origin_1"

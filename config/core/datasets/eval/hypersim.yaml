@@ -1,0 +1,11 @@
+HYPERSIM:
+  _target_: mde.datasets.train.hypersim.HypersimDataset
+
+  root:  ${HYPERSIM_PATH}
+  height: 256
+  width: 256
+  partition: 'train'
+
+  # root: ${HYPERSIM_PATH}
+  # size: [256,256] #[1034, 1551] # default image size in dataset
+  # partition: val

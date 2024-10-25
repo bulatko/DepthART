@@ -1,0 +1,6 @@
+NYUv2:
+  _target_: mde.datasets.NYUv2Dataset
+
+  root: ${NYUv2_PATH}
+  size: [256, 256]
+  partition: test

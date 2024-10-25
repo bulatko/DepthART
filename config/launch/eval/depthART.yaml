@@ -1,0 +1,96 @@
+# @package _global_
+
+defaults:
+  - _self_
+  - /core/datasets/eval@_global_.datasets: all
+
+model:
+  _target_: mde.models.adapters.VARFull
+  model:
+    _target_: mde.models.train_models.var_utils.DepthART
+    ckpt_path: PATH_TO_DEPTHART/model.safetensors
+    num_classes: 1000
+    patch_nums:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 8
+      - 10
+      - 13 
+      - 16
+    embed_dim: 1024
+    normalizer: 
+      _target_: mde.capsules.normalizers.NormalizerUTSQuant
+      affine: True
+      alpha: 2
+      beta: -1
+    shared_aln: False
+    depth: 16
+    cond_drop_rate: 0.1 # use for cfg
+    flash_if_available: True
+    fused_if_available: True
+    drop_path_rate: 0.06666666666666667
+    rec_loss: True
+    BlockConfig:
+      num_heads: 16
+      mlp_ratio: 4.
+      drop: 0.
+      attn_drop: 0.    
+      tau: 4
+      cos_attn: False
+
+    vae_local:
+      _target_: mde.models.train_models.var_utils.vqvae.VQVAE
+      ckpt_path: "vae_ch160v4096z32.pth"
+      vocab_size: 4096
+      v_patch_nums:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 8
+        - 10
+        - 13 
+        - 16
+      ddconfig:
+        dropout: 0.0
+        z_channels: 32
+        num_res_blocks: 2
+        in_channels: 3
+        ch: 160
+        ch_mult:
+          - 1
+          - 1
+          - 2
+          - 2
+          - 4
+        using_mid_sa: True
+        using_sa: True
+
+      quantconfig:
+        using_znorm: False       # whether to normalize when computing the nearest neighbors
+        beta: 0.25               # commitment loss weight
+        resiconfig:
+          quant_resi: 0.5          # 0.5 means \phi(x) = 0.5conv(x) + (1-0.5)x
+          share_quant_resi: 4      # use 4 \phi layers for K scales: partially-shared \phi
+          default_qresi_counts: 0  # if is 0: automatically set to len(v_patch_nums)
+  visualize: True
+  de: False
+
+aligner:
+  _target_: mde.capsules.aligner.AlignerSIL1
+
+metrics:
+  d1:
+    _target_: mde.capsules.meter.D1
+
+  absrel:
+    _target_: mde.capsules.meter.AbsRel
+  
+  mae:
+    _target_: mde.capsules.meter.MAE

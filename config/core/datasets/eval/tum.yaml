@@ -1,0 +1,6 @@
+TUM:
+  _target_: mde.datasets.TUMDataset
+  
+  root: ${TUM_PATH}
+  size: [256, 256]
+  partition: test

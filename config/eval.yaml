@@ -1,0 +1,6 @@
+defaults:
+  - _self_
+  - locale
+  - environment
+  - accelerator
+  - launch: eval/depthART

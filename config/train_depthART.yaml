@@ -1,0 +1,18 @@
+exp_name: train_depthART
+defaults:
+  - accelerator
+  - launch: train/models/var_train.yaml
+  - training_configs: train_depthART.yaml
+  - _self_
+
+
+accelerator:
+  project_config: 
+    _target_: accelerate.utils.ProjectConfiguration
+    project_dir: "./output/train/depthART"
+    logging_dir: "./logs/depth_ART"
+
+launch:
+  model:
+    _target_: mde.models.train_models.var_utils.DepthART
+    rec_loss: True

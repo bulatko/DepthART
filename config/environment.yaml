@@ -1,0 +1,9 @@
+DIML_INDOOR_PATH:           ${datasets_path}/DIML-indoor-jpg
+
+HYPERSIM_PATH:              ${datasets_path}/hypersim/data
+TUM_PATH:                   ${datasets_path}/midas_eval/TUM
+ETH3D_PATH:                 ${datasets_path}/midas_eval/ETH3D
+NYUv2_PATH:                 ${datasets_path}/midas_eval/NYUv2
+SINTEL_PATH:                ${datasets_path}/midas_eval/SINTEL
+KITTI_PATH:                 ${datasets_path}/midas_eval/KITTI
+IBIMS1_PATH:                ${datasets_path}/midas_eval/IBIMS1

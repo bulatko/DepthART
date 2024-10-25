@@ -1,0 +1,6 @@
+KITTI:
+  _target_: mde.datasets.KITTIDataset
+
+  root: ${KITTI_PATH}
+  size: [512,512]
+  partition: midas_test

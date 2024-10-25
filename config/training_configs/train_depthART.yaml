@@ -1,0 +1,27 @@
+training_parameters:
+  num_epochs: 30
+  exp_name: depthART
+  train_batch: 16
+  val_batch: 16
+  logger_parematers:
+    save_every: 684
+    im_log_every: 200
+    overwrite: True
+
+loss:
+  _target_: mde.capsules.loss.VARLoss
+  label_smoothing: 0.0
+  reduction: 'none'
+  L: 424
+
+optimizer:
+  _target_: torch.optim.AdamW
+  lr: 1e-4
+  betas: [0.9, 0.999]
+  weight_decay: 0.01
+  eps: 1e-8
+
+scheduler:
+  _target_: torch.optim.lr_scheduler.StepLR
+  step_size: 5000
+  gamma: 0.8
