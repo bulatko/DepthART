@@ -10,11 +10,10 @@ import safetensors
 logger = getLogger(__name__)
 logger.setLevel(DEBUG)
 
-import sys
 
 
 class VARFull(nn.Module):
-    def __init__(self, config, resume=None, visualize=True, de=True):
+    def __init__(self, model, resume=None, visualize=True, de=True):
         '''
         Adapting model for depth_estimation tool
         
@@ -22,11 +21,8 @@ class VARFull(nn.Module):
         super().__init__()
 
         # init models
-        config = OmegaConf.load(config)
-        self.model = hydra.utils.instantiate(config.model)
+        self.model = model
 
-        if resume is not None:
-            safetensors.torch.load_model(self.model, resume, strict=False)
         self.domain = 'depth'
         self.visualize = visualize
         self.normalizer = self.model.normalizer
@@ -38,7 +34,6 @@ class VARFull(nn.Module):
     def forward(self, batch):
         
         outputs = self.model(batch).predict
-        
         prediction = torch.nn.functional.interpolate(
             outputs,
             size=(batch.image.shape[-2], batch.image.shape[-1]),
